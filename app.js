@@ -1,105 +1,100 @@
-/* 2.1 ~ 2.3 const, let, number, string, operate */
-let a = 5
-const b = '2'
-
-console.log(a + b)
-console.log(a * b)
-console.log(a / b)
+/* 3.0 The Document Object */
+document.title = 'Sky App'
 
 
-/* 2.4 boolean, null, undefined */
-const amIFat = null
-let something
-console.log(amIFat, something)
+/* 3.1 HTML in Javascript */
+const titleElement = document.getElementById('title')
+// titleElement.innerText = 'Got you!'
+console.log(1, titleElement, titleElement.id, titleElement.className)
 
 
-/* 2.5 Array */
-const daysOfWeek = ['wed', 'thu', 'fri', 'sat']
+/* 3.2 Searching for Elements */
+const hellos = document.getElementsByClassName('hello')
+console.log(hellos)
 
-// Get Item from Array
-console.log(daysOfWeek[2])
+const titleElement2 = document.getElementsByTagName('h1')
+console.log(2, titleElement2)
 
-// Add one more day to the array
-daysOfWeek.push("sun")
-console.log(daysOfWeek)
+const titleElement3 = document.querySelector('.hello h1')
+console.log(3, titleElement3)
 
-const toBuy = ['potato', 'tomato', 'carrot']
-console.log(toBuy)
+const titleElement4 = document.querySelectorAll('.hello h1')
+console.log(4, titleElement4)
 
-toBuy.push('cabbage')
-console.log(toBuy)
-console.log(toBuy[999])
+const titleElement5 = document.querySelectorAll('.hello h1:first-child')
+console.log(5, titleElement5)
+
+const titleElement6 = document.querySelector('#title')
+console.log(6, titleElement6)
+
+const titleElement7 = document.querySelectorAll('#title')
+console.log(7, titleElement7)
+
+const titleElement8 = document.querySelectorAll('#title:first-child')
+console.log(8, titleElement8)
 
 
-/* 2.6 Object */
-const playerName = 'sky'
-const playerPoints = 0
-const playerIsAwesome = false
-const playerIsFat = 'little bit'
+/* 3.3 ~ 3.4 Events */
+// titleElement.style.color = 'blue'
 
-const player = {
-    name: 'sky',
-    points: 0,
-    isAwesome: true,
-    isFat: 'little bit',
+// function handleMouseClick() {
+//     console.log('title was clicked!')
+// }
+// function handleMouseEnter() {
+//     titleElement.innerText = 'Mouse is here!'
+// }
+// function handleMouseLeave() {
+//     titleElement.innerText = 'Mouse is gone!'
+// }
+
+// titleElement.addEventListener('click', handleMouseClick)
+// titleElement.addEventListener('mouseenter', handleMouseEnter)
+// titleElement.addEventListener('mouseleave', handleMouseLeave)
+/* aaa.removeEventListener(bbb) */
+// titleElement.onclick = handleMouseClick
+// titleElement.onmouseenter = handleMouseEnter
+// titleElement.onclick = handleMouseLeave
+
+// function handleWindowResize() {
+//     document.body.style.backgroundColor = 'tomato'
+// }
+// function handleWindowCopy() {
+//     alert('copier!')
+// }
+// function handleWindowOffline() {
+//     alert('NO WIFI')
+// }
+// function handleWindowOnline() {
+//     alert('YES WIFI')
+// }
+
+// window.addEventListener('resize', handleWindowResize)
+// window.addEventListener('copy', handleWindowCopy)
+// window.addEventListener('offline', handleWindowOffline)
+// window.addEventListener('online', handleWindowOnline)
+
+
+/* 3.6 ~ 3.8 CSS in JavaScript */
+const h1 = document.querySelector("div.hello:first-child h1")
+function handleMouseClick() {
+    // const currentColor = h1.style.color
+    // let newColor
+    // if (currentColor === 'blue') {
+    //     newColor = 'tomato'
+    // } else {
+    //     newColor = 'blue'
+    // }
+    // h1.style.color = newColor
+
+    const clickedClassName = 'active'
+    // if (h1.classList.contains(clickedClassName)) {
+    //     h1.classList.remove(clickedClassName)
+    // } else {
+    //     h1.classList.add(clickedClassName)
+    // }
+
+    h1.classList.toggle(clickedClassName)
 }
-console.log(player)
-console.log(player.name)
 
-player.points += 1
-console.log(player)
+titleElement.addEventListener('click', handleMouseClick)
 
-
-/* 2.7 ~ 2.8 Function */
-function sayHello(name, age) {
-    console.log('Hello! My name is ' + name + '. and I\'m ' + age + ' years old.')
-}
-sayHello('sky', 21)
-sayHello('nico', 99)
-
-function plus(a, b) {
-    console.log(a + b)
-}
-plus(1, 2)
-
-function divide(a, b) {
-    console.log( a / b)
-}
-divide(1, 2)
-
-const player2 = {
-    name: 'sky',
-    sayHello: function(name) {
-        console.log('Hello ' + name + ', nice to meet you!')
-    }
-}
-player2.sayHello('nico')
-player2.sayHello('lynn')
-
-
-/* 2.11 Returns */
-function plus(a, b) {
-    return a + b
-}
-const result = plus(100, 200)
-console.log(result)
-
-
-/* 2.13 Conditionals */
-const age = parseInt(prompt('How old are you?'))
-console.log(typeof age)
-console.log(isNaN(age))
-
-if (isNaN(age) || age < 0) {
-    console.log('Please write a real positive number.')
-} else if (age < 18) {
-    console.log('You are too young.')
-} else if (age >= 18 && age < 60) {
-    console.log('You can drink!')
-} else if (age >= 60 && age < 80) {
-    console.log('You should exercise.')
-} else if (age >= 100) {
-    console.log('Wow! you are wise.')
-} else if (age >= 80) {
-    console.log('You can do whatever you want.')
-}
