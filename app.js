@@ -1,34 +1,32 @@
 const loginForm = document.querySelector("#login-form")
 const loginInput = loginForm.querySelector('input')
-// const loginButton = document.querySelector('#login-form button')
 
-const link = document.querySelector('a')
+const greeting = document.querySelector('#greeting')
 
-// function onLoginBtnClick() {
-//     const username = loginInput.value
-//     if (!username) {
-//         alert('Please write your name.')
-//     } else if (username.length > 15) {
-//         alert('Your name is too long.')
-//     } else {
-//         console.log('hello', username)
-//     }
-// }
-
-// loginButton.addEventListener('click', onLoginBtnClick)
+const HIDDEN_CLASSNAME = 'hidden'
+const USERNAME_KEY = 'username'
 
 function onLoginSubmit(event) {
-    // console.log('hello', loginInput.value)
     event.preventDefault()
-    console.dir(event)
+
+    loginForm.classList.add(HIDDEN_CLASSNAME)
+
+    const username = loginInput.value
+    paintGreetings(username)
+    localStorage.setItem(USERNAME_KEY, username)
 }
 
-function onLinkClick(event) {
-    event.preventDefault()
-    console.dir(event)
-    // alert('clicked!')
+function paintGreetings(username) {
+    greeting.innerText = `Hello ${username} !`
+    greeting.classList.remove(HIDDEN_CLASSNAME)
 }
 
-loginForm.addEventListener('submit', onLoginSubmit)
+const savedUsername = localStorage.getItem(USERNAME_KEY)
 
-link.addEventListener('click', onLinkClick)
+if (!savedUsername) {
+    // show the form
+    loginForm.classList.remove(HIDDEN_CLASSNAME)
+    loginForm.addEventListener('submit', onLoginSubmit)
+} else {
+    paintGreetings(savedUsername)
+}
