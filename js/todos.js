@@ -2,23 +2,32 @@ const todoForm = document.querySelector('#todo-form')
 const todoInput = todoForm.querySelector('input')
 const todoList = document.querySelector('#todo-list')
 
-const todos = []
+const TODOS_KEY = 'todos'
+
+let todos = []
 
 function saveTodos() {
-    localStorage.setItem('todos', JSON.stringify(todos))
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos))
 }
 
 function deleteTodo(event) {
     const li = event.target.parentElement
     li.remove()
+
+    todos = todos.filter((todo) => todo.id !== parseInt(li.id))
+    saveTodos()
 }
 
-function paintTodo(newTodo) {
-    const li = document.createElement('li')
-    const span = document.createElement('span')
-    const btn = document.createElement('button')
+function paintTodo(newTodoObj) {
+    const { id, text } = newTodoObj
 
-    span.innerText = newTodo
+    const li = document.createElement('li')
+    li.id = id
+    
+    const span = document.createElement('span')
+    span.innerText = text
+    
+    const btn = document.createElement('button')
     btn.innerText = '❌'
     btn.addEventListener('click', deleteTodo)
 
@@ -31,9 +40,18 @@ function handleTodoSubmit(event) {
     event.preventDefault()
     const newTodo = todoInput.value
     todoInput.value = ''
-    todos.push(newTodo)
-    paintTodo(newTodo)
+    const newTodoObj = { id: Date.now(), text: newTodo }
+    todos.push(newTodoObj)
+    paintTodo(newTodoObj)
     saveTodos()
 }
 
 todoForm.addEventListener('submit', handleTodoSubmit)
+
+const savedTodos = localStorage.getItem(TODOS_KEY)
+
+if (!!savedTodos) {
+    const parsedTodos = JSON.parse(savedTodos)
+    todos = parsedTodos
+    parsedTodos.forEach(paintTodo)
+}
