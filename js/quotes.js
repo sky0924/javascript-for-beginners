@@ -1,15 +1,15 @@
 const quotes = [
     {
         quote: 'It\'s about time. Time to shine.',
-        author: 'NCT 마크',
+        author: 'NCT Mark',
     },
     {
-        quote: '꿈은 포기하는 게 아니라 변하는 거다.',
-        author: 'NCT 지성',
+        quote: 'Dreams are not about giving up, but about changing.',
+        author: 'NCT Jisung',
     },
     {
-        quote: '삶의 의미를 찾지 말고 다른 사람에게 삶의 의미가 되어 주자.',
-        author: 'NCT 지성',
+        quote: 'Instead of looking for the meaning of life, let\'s give meaning to life to others.',
+        author: 'NCT Jisung',
     },
     {
         quote: 'You might as well enjoy the pain that you cannot avoid. or Enjoy it if it\'s unavoidable',
